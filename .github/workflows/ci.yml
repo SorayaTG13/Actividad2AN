@@ -19,10 +19,12 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-          cache: maven
+
+      - name: Convertir finales de línea a LF
+        run: sed -i 's/\r$//' mvnw
 
       - name: Dar permisos de ejecución a mvnw
-          run: chmod +x mvnw
+        run: chmod +x mvnw
 
-      - name: Compilar y ejecutar tests con Maven Wrapper
-        run: ./mvnw -B clean test
+      - name: Ejecutar tests con Maven Wrapper
+        run: ./mvnw test
